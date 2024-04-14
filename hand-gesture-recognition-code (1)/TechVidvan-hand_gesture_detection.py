@@ -1,7 +1,3 @@
-# TechVidvan hand Gesture Recognizer
-
-# import necessary packages
-
 import cv2
 import numpy as np
 import mediapipe as mp
@@ -22,27 +18,21 @@ classNames = f.read().split('\n')
 f.close()
 print(classNames)
 
-
 # Initialize the webcam
 cap = cv2.VideoCapture(0)
-
 while True:
     # Read each frame from the webcam
     _, frame = cap.read()
-
     x, y, c = frame.shape
-
+    
     # Flip the frame vertically
     frame = cv2.flip(frame, 1)
     framergb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
     # Get hand landmark prediction
-    result = hands.process(framergb)
-
-    # print(result)
-    
+    result = hands.process(framergb)  
     className = ''
-
+    
     # post process the result
     if result.multi_hand_landmarks:
         landmarks = []
